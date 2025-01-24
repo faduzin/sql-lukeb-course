@@ -1,4 +1,6 @@
--- What are the skills required for these top-paying roles?
+-- 2. What are the skills required for these top-paying roles?
+
+-- R: By analysing the query response using excel, I found that 8 out of 8 roles need SQL, so I'd say that is a good start! Followed by Python with 7 out of 8 roles.
 
 SELECT
     *

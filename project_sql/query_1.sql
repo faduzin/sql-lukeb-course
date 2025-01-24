@@ -1,5 +1,7 @@
 -- 1. What are the top-paying jobs for my role?
 
+-- R: Query's response is the answer.
+
 -- Quick peek to check what columns and data types we have available
 SELECT
     column_name,
@@ -39,7 +41,6 @@ WHERE
 ORDER BY
     salary_year_avg DESC
 LIMIT 10;
-
 
 --Luke's step by step:
 /* Solution query
