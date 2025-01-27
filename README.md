@@ -1,62 +1,112 @@
 # SQL Data Analysis Project
 
-This project is inspired by Luke Barousse's video course on SQL for data analysis. It demonstrates my implementation of database creation, data loading, and analysis using PostgreSQL.
+Discover insights from the data job market! This project dives into 📈 top-paying data analyst roles, 🔑 in-demand skills, and 🌍 where high demand meets lucrative opportunities in data analytics.
+
+Inspired by a step-by-step video tutorial by [Luke Barousse](https://www.youtube.com/@LukeBarousse), this project recreates and expands upon his analysis.
+
+Check out SQL queries here: [project_sql folder](/practice_project_sql/)
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
+1. [Background](#background)
 2. [Folder Structure](#folder-structure)
-3. [Features](#features)
-4. [How to Use](#how-to-use)
+3. [Tools I Used](#tools-i-used)
+4. [The Analysis](#the-analysis)
 5. [Future Plans](#future-plans)
 6. [Contact](#contact)
 
 ---
 
-## Overview
+## Background
 
-This project uses a database published by Luke Barousse to analyze data with SQL.\
-The primary objectives include:
+The rise of data analytics has made data analyst roles some of the most sought-after in the job market. With a focus on the intersection of high demand and high salary, this project analyzes key questions about the data job market, such as:
 
-- Recreating the database from scratch using CSV files.
-- Solving analysis questions posed in the video.
-- Experimenting with SQL queries to explore the data further.
+1. What are the top-paying jobs for Data Analysts?
+2. What are the skills required for these top-paying roles?
+3. What are the most in-demand skills for Data Analysts?
+4. What are the top skills based on salary for Data Analysts?
+5. What are the most optimal skills to learn?
 
-You can watch the video that inspired this project [here](https://youtu.be/7mz73uXD9DA?si=D5pz3gTl8zcEJOOH), and check out Luke Barousse's channel [here](https://www.youtube.com/@LukeBarousse).
-
----
-
-## Folder Structure
-
-- **`project_sql`**: Contains 5 SQL files with my solutions to the analysis questions.
-- **`sql_load_from_scratch`**: Files for creating the database and importing data from CSV files (my implementation).
-- **`sql_load`**: Luke Barousse's implementation of the data-loading process.
-- **`sql_testing_queries`**: A collection of SQL queries for exploring and experimenting with the database.
+By answering these questions, this project provides valuable insights for anyone looking to enter or grow in the data analytics field.
 
 ---
 
-## Features
+## Tools I Used
 
-- **Database Creation**: Step-by-step scripts to create the database schema and load data using PostgreSQL.
-- **SQL Analysis**: Solutions to questions focused on data insights.
-- **Exploration**: Additional queries to deepen data understanding.
+To bring this project to life, I utilized a set of powerful tools:
 
----
-
-## How to Use
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/faduzin/sql-lukeb-course.git
-   cd sql-lukeb-course
-   ```
-2. Navigate to `sql_load_from_scratch` to create the database and import the data. Follow the instructions in the README inside the folder.
-3. Explore the analysis solutions in the `project_sql` folder.
-4. Experiment with the queries in the `sql_testing_queries` folder.
+- **SQL**: The foundation of my analysis, enabling detailed data exploration and query-building.
+- **PostgreSQL**: A robust database management system for efficiently organizing and querying the dataset.
+- **Visual Studio Code**: My preferred environment for writing and executing SQL scripts.
+- **Git & GitHub**: Essential for version control and sharing my work with clarity and organization.
 
 ---
+
+## The Analysis
+
+This project focused on uncovering key insights about the data analyst job market. Each query was designed to address specific questions, shedding light on trends, opportunities, and essential skills. Here’s how I tackled each aspect of the analysis:
+
+### *1. What are the top-paying jobs for Data Analysts?*
+
+To identify the highest-paying roles, I focused on Data Analyst positions with non-null average yearly salaries. The query highlights remote opportunities ("Anywhere") and ranks them by salary, showcasing the top 10 highest-paying roles in the field.
+
+```sql
+SELECT
+    job_postings_fact.job_title,
+    job_postings_fact.salary_year_avg,
+    company_dim.name as company_name
+FROM
+    job_postings_fact
+    LEFT JOIN company_dim ON company_dim.company_id = job_postings_fact.company_id
+WHERE
+    job_postings_fact.job_title_short = 'Data Analyst' AND
+    job_postings_fact.salary_year_avg IS NOT NULL AND
+    job_postings_fact.job_location = 'Anywhere'
+ORDER BY
+    salary_year_avg DESC
+LIMIT 10;
+```
+
+The query reveals the top 10 highest-paying Data Analyst roles in the market, including their job titles, companies, and average yearly salaries.
+
+| Rank | Job Title                                   | Company                        | Average Yearly Salary ($) |
+|------|--------------------------------------------|--------------------------------|---------------------------|
+| 1    | Data Analyst                               | Mantys                         | 650,000                  |
+| 2    | Director of Analytics                      | Meta                           | 336,500                  |
+| 3    | Associate Director- Data Insights          | AT&T                           | 255,829                |
+| 4    | Data Analyst, Marketing                    | Pinterest Job Advertisements   | 232,423                  |
+| 5    | Data Analyst (Hybrid/Remote)               | Uclahealthcareers              | 217,000                  |
+| 6    | Principal Data Analyst (Remote)            | SmartAsset                     | 205,000                  |
+| 7    | Director, Data Analyst - HYBRID            | Inclusively                    | 189,309                  |
+| 8    | Principal Data Analyst, AV Performance     | Motional                       | 189,000                  |
+| 9    | Principal Data Analyst                     | SmartAsset                     | 186,000                  |
+| 10   | ERM Data Analyst                           | Get It Recruit - IT            | 184,000                  |
+
+The top 10 data analyst jobs in 2023 indicates that:
+- **Salaries Fall Within a Consistent Range:** The average yearly salaries for these top-paying roles range from $184,000 to $650,000, indicating a significant but manageable disparity. This suggests a relatively competitive market for leadership roles in data analytics.
+
+- **Diverse Employers:** The jobs are offered by a variety of employers, such as Mantys, Meta, and AT&T, reflecting a broad demand for high-level data professionals across industries.
+
+- **Variety in Job Titles:** While all roles are senior-level, the titles vary significantly, including Director, Principal Data Analyst, and Associate Director. This diversity indicates that leadership and high-paying roles in data analytics are not confined to a single standard title, offering flexibility in career paths.
+
+### *2. What are the skills required for these top-paying roles?*
+
+
+
+### *3. What are the most in-demand skills for Data Analysts?*
+
+
+
+### *4. What are the top skills based on salary for Data Analysts?*
+
+
+
+### *5. What are the most optimal skills to learn?*
+
+
+
 
 ## Future Plans
 
