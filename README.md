@@ -93,7 +93,47 @@ The top 10 data analyst jobs in 2023 indicates that:
 
 ### *2. What are the skills required for these top-paying roles?*
 
+This query builds upon the top-paying Data Analyst jobs identified earlier by incorporating the specific skills required for each of those roles. It retrieves the job details, including titles, salaries, and company names, along with a list of associated skills, providing deeper insight into what makes these roles valuable. The results are ordered by salary, ensuring the highest-paying roles are highlighted first.
 
+```sql
+WITH top_paying_jobs AS (
+    SELECT
+        job_postings_fact.job_id,
+        job_postings_fact.job_title,
+        job_postings_fact.salary_year_avg,
+        company_dim.name as company_name
+    FROM
+        job_postings_fact
+        LEFT JOIN company_dim ON company_dim.company_id = job_postings_fact.company_id
+    WHERE
+        job_postings_fact.job_title_short = 'Data Analyst' AND
+        job_postings_fact.salary_year_avg IS NOT NULL AND
+        job_postings_fact.job_location = 'Anywhere'
+    ORDER BY
+        salary_year_avg DESC
+    LIMIT 10
+)
+SELECT
+    top_paying_jobs.*,
+    skills_dim.skills
+FROM
+    top_paying_jobs
+INNER JOIN skills_job_dim ON top_paying_jobs.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+ORDER BY
+    top_paying_jobs.salary_year_avg DESC;
+```
+The bar chart showcases the Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles. These skills are frequently mentioned across job postings, highlighting their importance in securing lucrative positions in the field.
+
+![Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles](<assets\Top 5 Most In-Demand Skills.png>)<figcaption>*Bar graph visualizing the top 5 most in-demand skills for the highest-paying data analyst roles; ChatGPT generated this graph from my SQL query results.*</figcaption>
+
+Here are some key insights based on the data for the most in-demand skills among the highest-paying Data Analyst roles:
+
+- **SQL Dominates the Field:** SQL is the most frequently mentioned skill, appearing in almost all of the top-paying roles, underlining its fundamental importance in data analysis.
+
+- **Python and Tableau Lead Supporting Skills:** Python and Tableau are close contenders, reinforcing their role as essential tools for analysis and visualization in high-paying positions.
+
+- **Diverse Skill Sets Are Valued:** While technical skills like R and Snowflake are critical, the variety of tools listed across the roles highlights the value of diverse expertise in securing top-paying jobs.
 
 ### *3. What are the most in-demand skills for Data Analysts?*
 
