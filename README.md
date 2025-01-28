@@ -84,12 +84,16 @@ The query reveals the top 10 highest-paying Data Analyst roles in the market, in
 | 9    | Principal Data Analyst                     | SmartAsset                     | 186,000                  |
 | 10   | ERM Data Analyst                           | Get It Recruit - IT            | 184,000                  |
 
-The top 10 data analyst jobs in 2023 indicates that:
+#### Key Insights based on results:
 - **Salaries Fall Within a Consistent Range:** The average yearly salaries for these top-paying roles range from $184,000 to $650,000, indicating a significant but manageable disparity. This suggests a relatively competitive market for leadership roles in data analytics.
 
 - **Diverse Employers:** The jobs are offered by a variety of employers, such as Mantys, Meta, and AT&T, reflecting a broad demand for high-level data professionals across industries.
 
 - **Variety in Job Titles:** While all roles are senior-level, the titles vary significantly, including Director, Principal Data Analyst, and Associate Director. This diversity indicates that leadership and high-paying roles in data analytics are not confined to a single standard title, offering flexibility in career paths.
+
+#### Answer to the Question
+
+The analysis reveals the top-paying jobs for Data Analysts, with salaries ranging from $184,000 to an exceptional $650,000. The highest-paying role, a "Data Analyst" at Mantys, significantly outpaces other positions, indicating unique market demand. Leadership roles like Directors and Associate Directors also rank among the highest-paying, highlighting the value of strategic and managerial expertise in the data analytics field.
 
 ### *2. What are the skills required for these top-paying roles?*
 
@@ -125,9 +129,9 @@ ORDER BY
 ```
 The bar chart showcases the Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles. These skills are frequently mentioned across job postings, highlighting their importance in securing lucrative positions in the field.
 
-![Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles](<assets\Top 5 Most In-Demand Skills.png>)<figcaption>*Bar graph visualizing the top 5 most in-demand skills for the highest-paying data analyst roles; ChatGPT generated this graph from my SQL query results.*</figcaption>
+![Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles](<assets\top-5-in-demand-skills.png>)<figcaption>*Bar graph visualizing the top 5 most in-demand skills for the highest-paying data analyst roles; ChatGPT generated this graph from my SQL query results.*</figcaption>
 
-Here are some key insights based on the data for the most in-demand skills among the highest-paying Data Analyst roles:
+#### Key Insights based on results:
 
 - **SQL Dominates the Field:** SQL is the most frequently mentioned skill, appearing in almost all of the top-paying roles, underlining its fundamental importance in data analysis.
 
@@ -135,12 +139,116 @@ Here are some key insights based on the data for the most in-demand skills among
 
 - **Diverse Skill Sets Are Valued:** While technical skills like R and Snowflake are critical, the variety of tools listed across the roles highlights the value of diverse expertise in securing top-paying jobs.
 
+#### Answer to the Question
+
+The top-paying Data Analyst roles require a mix of technical and analytical skills, with SQL leading the pack, followed by Python, Tableau, R, and Snowflake. These tools dominate the skill sets demanded by the highest-paying positions, underscoring their importance in securing lucrative jobs in the data analytics field.
+
 ### *3. What are the most in-demand skills for Data Analysts?*
 
+This query identifies the most in-demand skills for the role of Data Analyst. It counts how frequently each skill appears across all Data Analyst job postings, orders them by demand, and retrieves the top 5 skills that are most sought after in the job market.
 
+```sql
+SELECT
+    skills_dim.skills AS skill_name,
+    COUNT(skills_job_dim.job_id) AS demand_count
+FROM
+    job_postings_fact
+INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE
+    job_postings_fact.job_title_short = 'Data Analyst'
+GROUP BY 
+    skills_dim.skills
+ORDER BY
+    demand_count DESC
+LIMIT 5;
+```
+The table below lists the top 5 most in-demand skills for Data Analyst positions based on their frequency in job postings:
+| Skill Name | Demand Count |
+|------------|--------------|
+| SQL        | 92,628       |
+| Excel      | 67,031       |
+| Python     | 57,326       |
+| Tableau    | 46,554       |
+| Power BI   | 39,468       |
+
+I then applied a filter to focus exclusively on remote jobs, and here are the results:
+| Skill Name | Demand Count |
+|------------|--------------|
+| SQL        | 7291         |
+| Excel      | 4611         |
+| Python     | 4330         |
+| Tableau    | 3745         |
+| Power BI   | 2609         |
+
+##### Key Insights based on the results:
+
+- **SQL Is the Undisputed Leader:**
+SQL dominates both categories, appearing in 92,628 general job postings and 7,291 remote job postings. Its consistent demand highlights its essential role across all Data Analyst positions.
+
+- **Excel Remains a Key Tool:** 
+Despite advancements in data technologies, Excel is highly in-demand, with 67,031 general mentions and 4,611 remote mentions, reflecting its adaptability for data management and analysis tasks.
+
+- **Python's Flexibility Is Valued:**
+Python ranks third in both general (57,326 mentions) and remote (4,330 mentions) job postings, showcasing its importance for data manipulation, automation, and advanced analytics.
+
+- **Visualization Skills Are Critical:**
+Tools like Tableau (46,554 general; 3,745 remote mentions) and Power BI (39,468 general; 2,609 remote mentions) remain vital for presenting data insights effectively, especially in roles that involve reporting and stakeholder communication.
+
+- **Remote Roles Have a Similar Skill Profile:**
+The remote job data reflects a similar skill hierarchy to general roles, suggesting that the core technical requirements remain the same, regardless of the work environment.
+
+#### Answer to the Question
+
+The most in-demand skills for Data Analysts are SQL, Excel, Python, Tableau, and Power BI, appearing most frequently across job postings. These skills represent the core competencies employers seek, ensuring versatility and effectiveness in managing, analyzing, and visualizing data.
 
 ### *4. What are the top skills based on salary for Data Analysts?*
 
+This query identifies the top skills based on average salary for Data Analyst roles. It calculates the average salary for each skill across job postings, filters for skills with at least 3 mentions, and retrieves the top 25 skills ranked by their average salary.
+
+```sql
+SELECT
+    skills_dim.skills,
+    ROUND(AVG(salary_year_avg)) AS avg_salary,
+    COUNT(salary_year_avg)
+FROM
+    job_postings_fact
+INNER JOIN skills_job_dim ON skills_job_dim.job_id = job_postings_fact.job_id
+INNER JOIN skills_dim ON skills_dim.skill_id = skills_job_dim.skill_id
+WHERE
+    job_postings_fact.job_title_short = 'Data Analyst' 
+    AND job_postings_fact.salary_year_avg IS NOT NULL
+    AND job_postings_fact.job_work_from_home = TRUE
+GROUP BY
+    skills_dim.skills
+HAVING
+    COUNT(salary_year_avg) > 3
+ORDER BY
+    avg_salary DESC
+LIMIT 25;
+```
+Here is a grouped bar chart comparing the average salaries for skills across all jobs and remote jobs. It highlights differences in compensation for each skill based on job type.
+
+![Comparison of Average Salaries for All Jobs vs Remote Jobs by Skill](<assets\comparison-of-average-salaries-per-skill.png>)<figcaption>Bar graph comparing the average salaries for all jobs versus remote jobs by skill; ChatGPT generated this graph using merged SQL query results.</figcaption>
+
+#### Key Insights based on the results:
+
+- **Skill-Based Salary Variance:**
+Certain skills, such as Pandas and NumPy, command significantly higher average salaries in remote roles compared to all jobs. For example, Pandas averages $151,821 in remote jobs, far exceeding most skills in all jobs.
+
+- **Databricks Stands Out in Both Categories:**
+Databricks appears as one of the top-paying skills in both all jobs ($112,881) and remote jobs ($141,907), showcasing its relevance and demand across job types.
+
+- **Snowflake's Consistent Value:**
+Snowflake remains a high-paying and widely in-demand skill in both categories, maintaining average salaries of around $111,578 (all jobs) and $112,948 (remote jobs).
+
+- **Remote Jobs Favor Specialized Tools:**
+Remote roles show a preference for specialized tools like Pandas, NumPy, and PostgreSQL, which have higher average salaries compared to their general counterparts.
+
+#### Answer to the Question
+The top skills based on salary for Data Analyst roles vary slightly between all jobs and remote jobs. For all jobs, GitLab, Kafka, and PyTorch dominate the top-paying skills. In remote jobs, skills like Pandas, NumPy, and Databricks lead the pack.
+
+This analysis highlights that while some skills are universally valuable, certain tools and frameworks command a premium specifically in remote job markets. This could be due to the specialized nature of remote work environments requiring more advanced or niche technical expertise.
 
 
 ### *5. What are the most optimal skills to learn?*

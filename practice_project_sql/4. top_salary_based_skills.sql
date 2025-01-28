@@ -37,19 +37,18 @@ Skills like Oracle ($104,534), SAP ($102,920), and Java ($106,906) still see dem
 
 
 SELECT
-    sd.skills,
-    ROUND(AVG(salary_year_avg), 2) AS avg_salary,
+    skills_dim.skills,
+    ROUND(AVG(salary_year_avg)) AS avg_salary,
     COUNT(salary_year_avg)
 FROM
-    job_postings_fact AS jpf
-INNER JOIN skills_job_dim AS sjd ON sjd.job_id = jpf.job_id
-INNER JOIN skills_dim AS sd ON sd.skill_id = sjd.skill_id
+    job_postings_fact
+INNER JOIN skills_job_dim ON skills_job_dim.job_id = job_postings_fact.job_id
+INNER JOIN skills_dim ON skills_dim.skill_id = skills_job_dim.skill_id
 WHERE
-    jpf.job_title_short = 'Data Analyst' AND
-    jpf.salary_year_avg IS NOT NULL AND
-    jpf.job_work_from_home = TRUE
+    job_postings_fact.job_title_short = 'Data Analyst' AND
+    job_postings_fact.salary_year_avg IS NOT NULL
 GROUP BY
-    sd.skills
+    skills_dim.skills
 HAVING
     COUNT(salary_year_avg) > 3
 ORDER BY
