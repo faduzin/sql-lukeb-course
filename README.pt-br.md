@@ -6,8 +6,6 @@ Inspirado por um tutorial em vídeo passo a passo de [Luke Barousse](https://www
 
 Confira as queries SQL aqui: [pasta project_sql](/practice_project_sql/)
 
----
-
 ## Índice
 
 1. [Contexto](#contexto)
@@ -18,8 +16,6 @@ Confira as queries SQL aqui: [pasta project_sql](/practice_project_sql/)
 6. [Conclusão](#conclusao)
 7. [Planos Futuros](#planos-futuros)
 8. [Contato](#contato)
-
----
 
 ## Contexto
 
@@ -33,8 +29,6 @@ O aumento da análise de dados tornou os cargos de analista de dados alguns dos 
 
 Respondendo a essas perguntas, este projeto fornece insights valiosos para qualquer pessoa que queira entrar ou crescer na área de análise de dados.
 
----
-
 ## Ferramentas Utilizadas
 
 Para dar vida a este projeto, utilizei um conjunto de ferramentas poderosas:
@@ -42,10 +36,7 @@ Para dar vida a este projeto, utilizei um conjunto de ferramentas poderosas:
 - **SQL**: A base da minha análise, permitindo uma exploração detalhada e a criação de queries.
 - **PostgreSQL**: Um robusto sistema de gerenciamento de bancos de dados para organizar e consultar eficientemente o dataset.
 - **Visual Studio Code**: Meu ambiente preferido para escrever e executar scripts SQL.
-- **Git e GitHub**: Essenciais para controle de versão e para compartilhar meu trabalho com clareza e organização.
-
----
-
+- **Git e GitHub**: Essenciais para controle de versão e para compartilhar meu trabalho com clareza e organização
 ## A Análise
 
 Este projeto focou em descobrir insights-chave sobre o mercado de trabalho para analistas de dados. Cada query foi projetada para abordar questões específicas, iluminando tendências, oportunidades e habilidades essenciais.
@@ -314,8 +305,6 @@ Por meio deste projeto, aprofundei meu entendimento sobre o uso de SQL para anal
 - A importância de filtrar e segmentar dados (por exemplo, empregos remotos vs. gerais) para análises mais focadas.
 - Estruturar análises e resultados de forma clara e compreensível para diferentes públicos.
 
----
-
 ## Habilidades Praticadas
 
 Este projeto me permitiu praticar e aprimorar as seguintes habilidades:
@@ -323,8 +312,6 @@ Este projeto me permitiu praticar e aprimorar as seguintes habilidades:
 - **Proeficiência em SQL:** Escrever queries avançadas utilizando **JOIN**, **GROUP BY**, **HAVING** e **ORDER BY**.
 - **Análise de Dados:** Identificar tendências e insights relacionados a salários e demanda por habilidades no mercado de trabalho.
 - **Pensamento Crítico:** Interpretar os resultados das queries para gerar conclusões acionáveis.
-
----
 
 ## Conclusão
 
@@ -338,15 +325,11 @@ Esta análise destaca as habilidades e ferramentas críticas necessárias para o
 - **Cargos Remotos Valorizam Colaboração e Escalabilidade:** Ferramentas como Confluence, Hadoop e Snowflake são mais prevalentes em empregos remotos, refletindo a necessidade de colaboração e processamento escalável de dados.
 - **Habilidades Ideais para Aprender:** Snowflake e Databricks se destacam como habilidades universalmente valiosas, criando oportunidades em funções presenciais e remotas.
 
----
-
 ## Planos Futuros
 
 - Adicionar e responder a mais perguntas relacionadas à análise de dados além das abordadas no vídeo.
 - Otimizar e refinar queries para melhorar o desempenho.
 - Explorar potenciais visualizações baseadas nos resultados da análise em SQL.
-
----
 
 ## Contato
 

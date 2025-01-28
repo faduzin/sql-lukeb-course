@@ -6,8 +6,6 @@ Inspired by a step-by-step video tutorial by [Luke Barousse](https://www.youtube
 
 Check out SQL queries here: [project_sql folder](/practice_project_sql/)
 
----
-
 ## Table of Contents
 
 1. [Background](#background)
@@ -18,8 +16,6 @@ Check out SQL queries here: [project_sql folder](/practice_project_sql/)
 6. [Conclusion](#conclusion)
 7. [Future Plans](#future-plans)
 8. [Contact](#contact)
-
----
 
 ## Background
 
@@ -33,8 +29,6 @@ The rise of data analytics has made data analyst roles some of the most sought-a
 
 By answering these questions, this project provides valuable insights for anyone looking to enter or grow in the data analytics field.
 
----
-
 ## Tools I Used
 
 To bring this project to life, I utilized a set of powerful tools:
@@ -43,8 +37,6 @@ To bring this project to life, I utilized a set of powerful tools:
 - **PostgreSQL**: A robust database management system for efficiently organizing and querying the dataset.
 - **Visual Studio Code**: My preferred environment for writing and executing SQL scripts.
 - **Git & GitHub**: Essential for version control and sharing my work with clarity and organization.
-
----
 
 ## The Analysis
 
@@ -333,8 +325,6 @@ This analysis highlights the critical skills and tools necessary for success as 
 - Add and answer more data analysis questions beyond those covered in the video.
 - Optimize and refine queries for better performance.
 - Explore potential visualizations based on the SQL analysis results.
-
----
 
 ## Contact
 
