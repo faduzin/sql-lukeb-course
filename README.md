@@ -253,8 +253,78 @@ This analysis highlights that while some skills are universally valuable, certai
 
 ### *5. What are the most optimal skills to learn?*
 
+This query identifies the most optimal skills to learn for Data Analysts by evaluating skills with significant demand (more than 10 job mentions) and high average salaries. It ranks skills based on their average salary and demand, providing insights into which skills offer the best combination of value and opportunities.
 
+```sql
+SELECT
+    skills_dim.skill_id,
+    skills_dim.skills,
+    COUNT(skills_job_dim.job_id) as demand_count,
+    ROUND(AVG(job_postings_fact.salary_year_avg), 2) AS avg_salary
+FROM
+    job_postings_fact
+INNER JOIN skills_job_dim ON skills_job_dim.job_id = job_postings_fact.job_id
+INNER JOIN skills_dim ON skills_dim.skill_id = skills_job_dim.skill_id
+WHERE
+    job_postings_fact.job_title_short = 'Data Analyst' 
+    AND job_postings_fact.salary_year_avg IS NOT NULL
+GROUP BY
+    skills_dim.skill_id
+HAVING
+    COUNT(skills_job_dim.job_id) > 10
+ORDER BY
+    avg_salary DESC,
+    demand_count DESC
+LIMIT 25;
+```
 
+I ran a query to identify the top 25 skills with the highest salaries and demand across all jobs. Then, I filtered the query to focus only on remote jobs. Using the results, I generated a chart comparing the top 4 highest-paying skills in both contexts, highlighting the differences in value and demand between all jobs and remote roles.
+
+![Top 4 Highest Salaries: All Jobs Vs Remote Jobs](<assets/top-4-highest-salaries.png>)<figcaption>Bar graph comparing the top 4 highest salaries for skills in all jobs versus remote jobs; generated from SQL query results to highlight key skill-based salary differences.</figcaption>
+
+#### Key Insights based on the results:
+
+- **Salary Variance Across Job Types:**
+Certain skills, such as Kafka and Go, showcase significantly higher average salaries in all jobs and remote jobs, respectively. This indicates that specific skills are more valued depending on the job type.
+
+- **Remote Roles Favor Specialized Tools:**
+Skills like Confluence and Hadoop appear prominently in remote jobs, emphasizing the demand for collaboration and data processing tools in remote work environments.
+
+- **Common High-Paying Skills:**
+Snowflake is a consistent high-paying skill across both all jobs and remote jobs, highlighting its universal value in data analytics roles regardless of the job setup.
+
+- **All Jobs Highlight Advanced Frameworks:**
+Skills such as Kafka and TensorFlow rank higher in all jobs, suggesting their importance in broader enterprise or on-site data analysis projects.
+
+#### Answer to the Question
+
+The most optimal skills to learn depend on whether you are targeting all jobs or remote roles. For all jobs, skills like Kafka, PyTorch, and TensorFlow stand out with high average salaries and demand. For remote roles, skills like Go, Confluence, and Hadoop dominate, showcasing their importance in flexible work environments. However, universally valued skills like Snowflake appear in both contexts, making them a strong choice for any Data Analyst aiming to maximize opportunities.
+
+## What I Learned
+Through this project, I deepened my understanding of using SQL to analyze real-world datasets. Key takeaways include:
+
+- How to write complex SQL queries to extract insights and answer business questions.
+- Techniques for combining datasets using JOINs to uncover meaningful relationships.
+- The importance of filtering and segmenting data (e.g., remote jobs vs. all jobs) for focused analysis.
+- Structuring analyses and findings in a way that is clear, readable, and actionable.
+
+## Skills Practiced
+This project allowed me to practice and enhance the following skills:
+
+- **SQL Proficiency:** Writing advanced queries using JOIN, GROUP BY, HAVING, and ORDER BY.
+- **Data Analysis:** Identifying trends and insights related to salary and demand for skills in job markets.
+- **Critical Thinking:** Interpreting query results to generate actionable conclusions.
+
+## Conclusion
+
+This analysis highlights the critical skills and tools necessary for success as a Data Analyst, both in general and remote job markets. SQL remains the most in-demand and universally valued skill, while tools like Tableau, Power BI, and Python are crucial for handling data visualization and advanced analysis. High salaries are associated with specialized tools such as Kafka and TensorFlow, particularly in on-site roles, while remote positions emphasize collaboration and big data technologies like Confluence and Hadoop. Versatile tools such as Snowflake and Databricks bridge the gap, offering opportunities in both job types.
+
+### Insights:
+- **SQL Leads the Market:** The most frequently demanded skill across all job postings, making it foundational for any Data Analyst role.
+- **Visualization and Analysis Tools Are Essential:** Tableau, Power BI, and Python appear consistently across analyses, reinforcing their necessity for effective data storytelling and advanced computations.
+- **Advanced Frameworks Command Higher Salaries:** Kafka, TensorFlow, and PyTorch offer some of the highest salaries, rewarding expertise in cutting-edge technologies.
+- **Remote Roles Favor Collaboration and Scalability:** Tools like Confluence, Hadoop, and Snowflake are more prevalent in remote jobs, reflecting the need for scalable data processing and team collaboration.
+- **Optimal Skills to Learn:** Snowflake and Databricks stand out as universally valuable skills, bridging opportunities between on-site and remote roles.
 
 ## Future Plans
 
