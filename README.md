@@ -129,7 +129,7 @@ ORDER BY
 ```
 The bar chart showcases the Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles. These skills are frequently mentioned across job postings, highlighting their importance in securing lucrative positions in the field.
 
-![Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles](<assets\top-5-in-demand-skills.png>)<figcaption>*Bar graph visualizing the top 5 most in-demand skills for the highest-paying data analyst roles; ChatGPT generated this graph from my SQL query results.*</figcaption>
+![Top 5 Most In-Demand Skills among the 10 highest-paying Data Analyst roles](<assets/top-5-in-demand-skills.png>)<figcaption>*Bar graph visualizing the top 5 most in-demand skills for the highest-paying data analyst roles; ChatGPT generated this graph from my SQL query results.*</figcaption>
 
 #### Key Insights based on results:
 
@@ -229,7 +229,7 @@ LIMIT 25;
 ```
 Here is a grouped bar chart comparing the average salaries for skills across all jobs and remote jobs. It highlights differences in compensation for each skill based on job type.
 
-![Comparison of Average Salaries for All Jobs vs Remote Jobs by Skill](<assets\comparison-of-average-salaries-per-skill.png>)<figcaption>Bar graph comparing the average salaries for all jobs versus remote jobs by skill; ChatGPT generated this graph using merged SQL query results.</figcaption>
+![Comparison of Average Salaries for All Jobs vs Remote Jobs by Skill](<assets/comparison-of-average-salaries-per-skill.png>)<figcaption>Bar graph comparing the average salaries for all jobs versus remote jobs by skill; ChatGPT generated this graph using merged SQL query results.</figcaption>
 
 #### Key Insights based on the results:
 
