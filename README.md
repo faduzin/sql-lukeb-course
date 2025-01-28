@@ -1,5 +1,7 @@
 # SQL Data Analysis Project
 
+*Para acessar este README em português, [clique aqui](README.pt-br.md).*
+
 Discover insights from the data job market! This project dives into 📈 top-paying data analyst roles, 🔑 in-demand skills, and 🌍 where high demand meets lucrative opportunities in data analytics.
 
 Inspired by a step-by-step video tutorial by [Luke Barousse](https://www.youtube.com/@LukeBarousse), this project recreates and expands upon his analysis.
