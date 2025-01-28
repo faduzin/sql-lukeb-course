@@ -11,11 +11,13 @@ Check out SQL queries here: [project_sql folder](/practice_project_sql/)
 ## Table of Contents
 
 1. [Background](#background)
-2. [Folder Structure](#folder-structure)
-3. [Tools I Used](#tools-i-used)
-4. [The Analysis](#the-analysis)
-5. [Future Plans](#future-plans)
-6. [Contact](#contact)
+2. [Tools I Used](#tools-i-used)
+3. [The Analysis](#the-analysis)
+4. [What I Learned](#what-i-learned)
+5. [Skills Practiced](#skills-practiced)
+6. [Conclusion](#conclusion)
+7. [Future Plans](#future-plans)
+8. [Contact](#contact)
 
 ---
 
